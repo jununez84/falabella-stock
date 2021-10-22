@@ -1,0 +1,29 @@
+.card {
+  cursor: pointer;
+}
+.urlInput {
+  margin-left: 20px;
+  padding: 5px;
+  &:focus {
+    border: 1px solid greenyellow;
+  }
+}
+.btn-close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 3px;
+  height: 3px;
+  z-index: 1;
+}
+.image-container {
+  position: relative;
+  border-radius: 3px;
+  padding: 3px;
+}
+.main-image {
+  background-color: greenyellow;
+}
+.invalid-feedback {
+  display: block;
+}

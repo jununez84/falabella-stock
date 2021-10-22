@@ -1,0 +1,14 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  stock-db:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=stock
+    networks:
+      - stock-nw
+networks:
+  stock-nw:

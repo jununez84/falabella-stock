@@ -1,0 +1,41 @@
+<div class="card">
+  <div class="card-body d-flex">
+    <ng-container *ngFor="let image of images; index as i">
+      <div
+        class="image-container"
+        [ngClass]="{ 'main-image': image.type == 'MAIN' }"
+        (click)="setAsMain(i)"
+      >
+        <button
+          class="btn-close"
+          (click)="removeImage(i)"
+          *ngIf="image.type !== 'MAIN'"
+        ></button>
+        <img
+          class="img-thumbnail"
+          [src]="image.url"
+          onerror="this.src='./assets/images/not-here-img.png'"
+          alt=""
+          width="45px"
+        />
+      </div>
+    </ng-container>
+    <div>
+      <input
+        class="urlInput"
+        (keyup)="urlInput.valid && keyUpEnter($event)"
+        (blur)="urlInput.valid && blurUrlInput()"
+        [(ngModel)]="imageUrl"
+        pattern="^[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$"
+        placeholder="Ingrese la url de la imagen"
+        #urlInput="ngModel"
+      />
+      <div
+        class="invalid-feedback"
+        *ngIf="urlInput.invalid && (urlInput.dirty || urlInput.touched)"
+      >
+        <span>La url no es valida</span>
+      </div>
+    </div>
+  </div>
+</div>

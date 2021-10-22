@@ -1,0 +1,14 @@
+.d-flex {
+  justify-content: space-between;
+}
+.list-group {
+  margin: 2rem auto;
+}
+
+.add-btn-float {
+  position: fixed;
+  right: 2rem;
+  bottom: 0;
+  width: auto;
+  z-index: 1000;
+}

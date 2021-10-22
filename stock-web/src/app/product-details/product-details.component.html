@@ -1,0 +1,105 @@
+<div class="card my-3">
+  <h5 class="card-header">
+    {{ !!product && !!product.sku ? product.sku : "Producto" }}
+  </h5>
+  <div class="card-body row g-4" *ngIf="!loading">
+    <div class="col-md-12 row g-4">
+      <div class="col-md-4">
+        <label for="name" class="form-label">Nombre</label>
+        <input
+          class="form-control"
+          id="name"
+          [(ngModel)]="product.name"
+          required
+          minlength="3"
+          maxlength="50"
+          #name="ngModel"
+        />
+        <div
+          class="invalid-feedback"
+          *ngIf="name.invalid && (name.dirty || name.touched)"
+        >
+          <span *ngIf="name.errors?.required">El nombre es requerido</span>
+          <span *ngIf="name.errors?.minlength"
+            >Debe tener 3 o más caracteres</span
+          >
+        </div>
+      </div>
+      <div class="col-md-4">
+        <label for="brand" class="form-label"> Marca </label>
+        <input
+          class="form-control"
+          id="brand"
+          required
+          minlength="3"
+          maxlength="50"
+          [(ngModel)]="product.brand"
+          #brand="ngModel"
+        />
+        <div
+          class="invalid-feedback"
+          *ngIf="brand.invalid && (brand.dirty || brand.touched)"
+        >
+          <span *ngIf="brand.errors?.required">La marca es requerida</span>
+          <span *ngIf="brand.errors?.minlength"
+            >Debe tener 3 o más caracteres</span
+          >
+        </div>
+      </div>
+      <div class="col-md-2">
+        <label for="size" class="form-label">Tamaño</label>
+        <input class="form-control" id="size" [(ngModel)]="product.size" />
+      </div>
+      <div class="col-md-2">
+        <label for="price" class="form-label">Precio</label>
+        <input
+          class="form-control"
+          id="price"
+          [(ngModel)]="product.price"
+          required
+          #price="ngModel"
+        />
+        <div
+          class="invalid-feedback"
+          *ngIf="price.invalid && (price.dirty || price.touched)"
+        >
+          <span *ngIf="price.errors?.required">El precio es requerido</span>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <app-multi-image-input
+          [(images)]="product.images"
+        ></app-multi-image-input>
+      </div>
+    </div>
+    <div class="btn-group col-md-2">
+      <button
+        type="button"
+        class="btn btn-secondary"
+        [disabled]="
+          name.invalid ||
+          brand.invalid ||
+          price.invalid ||
+          !(product.images.length > 0)
+        "
+        (click)="save()"
+      >
+        Guardar
+      </button>
+      <button
+        type="button"
+        class="btn btn-outline-secondary"
+        (click)="cancel()"
+      >
+        Cancelar
+      </button>
+    </div>
+  </div>
+  <div class="card-body row g-3" *ngIf="loading">
+    <div class="text-center">
+      <div class="spinner-border" role="status">
+        <span class="sr-only"></span>
+      </div>
+    </div>
+  </div>
+</div>

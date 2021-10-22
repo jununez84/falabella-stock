@@ -1,0 +1,4 @@
+FROM openjdk:11
+COPY ./build/libs/stock-*.jar /usr/src/stock/stock.jar
+WORKDIR /usr/src/stock
+CMD ["java", "-jar", "stock.jar"]

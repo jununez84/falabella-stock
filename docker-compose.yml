@@ -1,0 +1,23 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  stock-backend:
+    build: ./stock
+    ports:
+      - "8080:8080"
+    environment:
+      - STOCK_DB_USERNAME=postgres
+      - STOCK_DB_URL=jdbc:postgresql://stock-db:5432/stock
+      - STOCK_DB_PASSWORD=123456
+      - STOCK_DB_DRIVER_CLASS=org.postgresql.Driver
+    networks:
+      - stock-nw
+  stock-frontend:
+    build: ./stock-web
+    ports:
+      - "4200:80"
+    networks:
+      - stock-nw
+    links:
+      - stock-backend
+networks:
+  stock-nw:
